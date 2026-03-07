@@ -44,8 +44,10 @@
 
 html {
     scroll-behavior: auto;
-    /* Handled by GSAP ScrollSmoother later if added, else manual smooth */
     font-size: 16px;
+    /* FIX für das horizontale Scroll-Problem auf Mobile */
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -53,9 +55,19 @@ body {
     background-color: var(--color-background-dark);
     color: var(--color-text-light);
     line-height: 1.6;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* FIX für das horizontale Scroll-Problem auf Mobile */
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* FIX für das horizontale Scroll-Problem auf Mobile */
+#smooth-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 /* Verhindert, dass die Sektion unter dem Header verschwindet */
