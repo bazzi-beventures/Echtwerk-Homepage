@@ -70,6 +70,15 @@ body {
     position: relative;
 }
 
+/* --- FIX: Realistische, scharfe Pinselstriche (Entfernt Unschärfe) --- */
+.brush-stroke, .brush-path {
+    filter: url(#realistic-brush) !important;
+    -webkit-filter: url(#realistic-brush) !important;
+    transform-style: preserve-3d; /* Verhindert Weichzeichnen durch Hardware-Beschleunigung */
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
 /* Verhindert, dass die Sektion unter dem Header verschwindet */
 section {
     scroll-margin-top: 100px;
