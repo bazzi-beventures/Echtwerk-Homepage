@@ -31,18 +31,19 @@
             scroll-margin-top: 100px;
         }
 
-        /* --- FIX: Scharfe, realistische Pinselstriche (Entfernt Unschärfe) --- */
+        /* --- FIX: Scharfe, realistische Pinselstriche (KEIN BLUR) --- */
         .brush-stroke, .brush-path {
             filter: url(#realistic-brush) !important;
             -webkit-filter: url(#realistic-brush) !important;
-            transform-style: preserve-3d; /* Verhindert GPU-Blur beim Animieren */
+            /* Verhindert, dass der Browser beim Animieren die Kanten weichzeichnet */
+            transform-style: preserve-3d;
             backface-visibility: hidden;
             will-change: transform;
         }
 
         /* Desktop Navigation Styles */
         .desktop-nav-links {
-            display: none; /* Mobile first: auf kleinen Screens ausblenden */
+            display: none;
             list-style: none;
             gap: 2rem;
             margin: 0;
@@ -50,12 +51,10 @@
             align-items: center;
         }
 
-        /* Ab Tablet/Desktop einblenden */
         @media (min-width: 992px) {
             .desktop-nav-links {
                 display: flex;
             }
-            /* Blendet deinen dynamischen Einzel-Titel auf Desktop aus, da wir jetzt alle Links zeigen */
             .nav-title-wrapper {
                 display: none !important;
             }
@@ -63,7 +62,7 @@
 
         .desktop-nav-links a {
             text-decoration: none;
-            color: #333; /* Standardfarbe */
+            color: #333;
             font-family: 'Outfit', sans-serif;
             font-weight: 500;
             font-size: 1rem;
@@ -76,7 +75,6 @@
             color: #3F6D50;
         }
 
-        /* Aktiver State (Scroll-Spy) */
         .desktop-nav-links a.active {
             color: #3F6D50;
             font-weight: 700;
@@ -93,10 +91,9 @@
             border-radius: 2px;
         }
 
-        /* --- NEU: Cookie Banner Styles --- */
         .cookie-banner {
             position: fixed;
-            bottom: -150%; /* Versteckt den Banner initial */
+            bottom: -150%;
             left: 0;
             width: 100%;
             background-color: #ffffff;
@@ -137,7 +134,7 @@
         }
 
         .cookie-text a {
-            color: #2D5784; /* Primary Blue */
+            color: #2D5784;
             text-decoration: underline;
             font-weight: 500;
             transition: opacity 0.3s ease;
@@ -178,9 +175,12 @@
     <svg width="0" height="0" style="position: absolute; pointer-events: none;">
         <defs>
             <filter id="realistic-brush" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="1.5" numOctaves="3" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displaced" />
-                <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -10" />
+                <feTurbulence type="fractalNoise" baseFrequency="0.04 0.4" numOctaves="3" seed="5" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                <feColorMatrix type="matrix" values="1 0 0 0 0  
+                                                   0 1 0 0 0  
+                                                   0 0 1 0 0  
+                                                   0 0 0 35 -15" />
             </filter>
         </defs>
     </svg>
@@ -276,7 +276,7 @@
                             <svg class="brush-drawing-svg" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
                                 <path class="brush-path" d="M35,22 C65,30 85,62 100,62 C115,62 135,30 165,22"
                                     fill="none" stroke="#3F6D50" stroke-width="16" stroke-linecap="round"
-                                    stroke-linejoin="round" filter="url(#realistic-brush)" />
+                                    stroke-linejoin="round" />
                                 <g class="brush-tip" style="visibility: hidden;">
                                     <path d="M-2,-12 L2,-12 L3,-2 L-3,-2 Z" fill="#2D5784" />
                                     <path d="M-3,-2 L3,-2 L3,0 L-3,0 Z" fill="#2D5784" opacity="0.8" />
@@ -354,7 +354,7 @@
                             <svg class="brush-drawing-svg" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
                                 <path class="brush-path" d="M35,22 C65,30 85,62 100,62 C115,62 135,30 165,22"
                                     fill="none" stroke="#3F6D50" stroke-width="16" stroke-linecap="round"
-                                    stroke-linejoin="round" filter="url(#realistic-brush)" />
+                                    stroke-linejoin="round" />
                                 <g class="brush-tip" style="visibility: hidden;">
                                     <path d="M-2,-12 L2,-12 L3,-2 L-3,-2 Z" fill="#2D5784" />
                                     <path d="M-3,-2 L3,-2 L3,0 L-3,0 Z" fill="#2D5784" opacity="0.8" />
@@ -371,7 +371,6 @@
                             <h2 class="section-title" style="color: #3F6D50;">Unsere Lösung</h2>
                             <h3 class="section-headline">So schaffen wir echten Mehrwert.</h3>
                         </div>
-
                         <div class="solution-row">
                             <div class="solution-content">
                                 <h3>Fachkräfte gewinnen</h3>
@@ -386,7 +385,6 @@
                                 <img src="assets/craft_team.png" alt="Eingespieltes Team" class="rounded-image">
                             </div>
                         </div>
-
                         <div class="solution-row reverse">
                             <div class="solution-content">
                                 <h3>Tradition weiterführen</h3>
@@ -401,7 +399,6 @@
                                 <img src="assets/craft_owner_painter.png" alt="Betriebsinhaber" class="rounded-image">
                             </div>
                         </div>
-
                         <div class="solution-row">
                             <div class="solution-content">
                                 <h3>Fokus auf die Wertschöpfung</h3>
@@ -425,56 +422,34 @@
                             <h2 class="section-title">Partnerschaft</h2>
                             <h3 class="section-headline">Unser Suchprofil</h3>
                         </div>
-
                         <div class="partnership-grid">
                             <div class="partner-item">
                                 <div class="partner-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                        <circle cx="12" cy="10" r="3"></circle>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                                 </div>
                                 <h4>Region</h4>
                                 <p>Zentral- und Ostschweiz.</p>
                             </div>
                             <div class="partner-item">
                                 <div class="partner-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                 </div>
                                 <h4>Grösse</h4>
                                 <p>Kleine bis mittlere Betriebe mit 3–10 Mitarbeitenden.</p>
                             </div>
                             <div class="partner-item">
                                 <div class="partner-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none">
-                                        <path
-                                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
-                                        </path>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
                                 </div>
                                 <h4>Gewerke</h4>
                                 <p>Malerarbeiten, Trockenbau, Fassadenreinigung oder verwandte Bereiche.</p>
                             </div>
                             <div class="partner-item">
                                 <div class="partner-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none">
-                                        <polygon
-                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                        </polygon>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                                 </div>
                                 <h4>Qualitäten</h4>
-                                <p>Etablierter lokaler Ruf, loyaler Kundenstamm und eine qualitätsbewusste,
-                                    bodenständige Kultur.</p>
+                                <p>Etablierter lokaler Ruf, loyaler Kundenstamm und eine qualitätsbewusste, bodenständige Kultur.</p>
                             </div>
                         </div>
                     </div>
@@ -486,138 +461,22 @@
                             <h2 class="section-title" style="color: #3F6D50;">Strategie</h2>
                             <h3 class="section-headline">Roadmap & Wachstum</h3>
                         </div>
-
                         <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 1: Scouting</h4>
-                                    <ul>
-                                        <li>Identifikation von etablierten Betrieben mit anstehendem Nachfolgebedarf.
-                                        </li>
-                                        <li>Fokus auf gesunde Unternehmensstrukturen und stabile Erträge.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 2: Übernahme</h4>
-                                    <ul>
-                                        <li>Akquisition oder Mehrheitsbeteiligung durch ECHTWERK.</li>
-                                        <li>Bisherige Eigentümer bleiben auf Wunsch in einer Übergangsphase aktiv
-                                            involviert.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 3: Integration</h4>
-                                    <ul>
-                                        <li>Zentralisierung von nicht-wertschöpfenden administrativen Tätigkeiten.</li>
-                                        <li>Einführung moderner Software-Tools und standardisierter Prozesse.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 4/5: Expansion</h4>
-                                    <ul>
-                                        <li>Gezielter regionaler Ausbau des ECHTWERK-Netzwerks.</li>
-                                        <li>Stärkung der Dachmarke für höchste Visibilität und Kundenvertrauen.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item highlight-goal">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Mittelfristiges Ziel (Ende 2027)</h4>
-                                    <p>Skaliertes und erweitertes Netzwerk über mehrere Regionen hinweg.</p>
-                                </div>
-                            </div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 1: Scouting</h4><ul><li>Identifikation von etablierten Betrieben mit anstehendem Nachfolgebedarf.</li><li>Fokus auf gesunde Unternehmensstrukturen und stabile Erträge.</li></ul></div></div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 2: Übernahme</h4><ul><li>Akquisition oder Mehrheitsbeteiligung durch ECHTWERK.</li><li>Bisherige Eigentümer bleiben auf Wunsch in einer Übergangsphase aktiv involviert.</li></ul></div></div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 3: Integration</h4><ul><li>Zentralisierung von nicht-wertschöpfenden administrativen Tätigkeiten.</li><li>Einführung moderner Software-Tools und standardisierter Prozesse.</li></ul></div></div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 4/5: Expansion</h4><ul><li>Gezielter regionaler Ausbau des ECHTWERK-Netzwerks.</li><li>Stärkung der Dachmarke für höchste Visibilität und Kundenvertrauen.</li></ul></div></div>
+                            <div class="timeline-item highlight-goal"><div class="timeline-dot"></div><div class="timeline-content"><h4>Mittelfristiges Ziel (Ende 2027)</h4><p>Skaliertes und erweitertes Netzwerk über mehrere Regionen hinweg.</p></div></div>
                         </div>
                     </div>
                 </section>
 
                 <section class="team section-padding" id="team">
                     <div class="container">
-                        <div class="section-header center">
-                            <h2 class="section-title">Wer wir sind</h2>
-                            <h3 class="section-headline">Die Köpfe hinter ECHTWERK</h3>
-                        </div>
-
+                        <div class="section-header center"><h2 class="section-title">Wer wir sind</h2><h3 class="section-headline">Die Köpfe hinter ECHTWERK</h3></div>
                         <div class="team-grid">
-                            <div class="team-member">
-                                <div class="team-photo">[Foto Platzhalter]</div>
-                                <h3>Achim Eckert</h3>
-                                <div class="team-role">Gründer / Partner</div>
-                                <p class="team-bio">[Kurzbeschreibung oder Zitat von Achim Eckert. Fokus auf Vision,
-                                    Handwerk und moderne Unternehmensnachfolge.]</p>
-                                <div class="team-social">
-                                    <a href="#" class="social-link" title="LinkedIn">
-                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                                            <path
-                                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                            </path>
-                                            <rect x="2" y="9" width="4" height="12"></rect>
-                                            <circle cx="4" cy="4" r="2"></circle>
-                                        </svg>
-                                    </a>
-                                    <a href="mailto:achim.eckert@bazzieckert.com" class="social-link" title="Email">
-                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                                            <path
-                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                            </path>
-                                            <polyline points="22,6 12,13 2,6"></polyline>
-                                        </svg>
-                                    </a>
-                                    <a href="tel:+41793740879" class="social-link" title="Phone">
-                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                                            <path
-                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="team-member">
-                                <div class="team-photo">
-                                <img src="assets/Profilbild Luca.jpeg" alt="Luca Bazzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                                </div>
-                                <h3>Luca Bazzi</h3>
-                                <div class="team-role">Gründer / Partner</div>
-                                <p class="team-bio">[Kurzbeschreibung oder Zitat von Luca Bazzi. Fokus auf
-                                    Digitalisierung, Effizienz und die Transformation der Branche.]</p>
-                                <div class="team-social">
-                                    <a href="https://www.linkedin.com/in/luca-bazzi/" class="social-link" title="LinkedIn">
-                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                                            <path
-                                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                            </path>
-                                            <rect x="2" y="9" width="4" height="12"></rect>
-                                            <circle cx="4" cy="4" r="2"></circle>
-                                        </svg>
-                                    </a>
-                                    <a href="mailto:Luca.bazzi@beventures.ch" class="social-link" title="Email">
-                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                                            <path
-                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                            </path>
-                                            <polyline points="22,6 12,13 2,6"></polyline>
-                                        </svg>
-                                    </a>
-                                    <a href="tel:+41795079822" class="social-link" title="Phone">
-                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                                            <path
-                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
+                            <div class="team-member"><div class="team-photo">[Foto Achim]</div><h3>Achim Eckert</h3><div class="team-role">Gründer / Partner</div><p class="team-bio">[Bio Achim]</p></div>
+                            <div class="team-member"><div class="team-photo"><img src="assets/Profilbild Luca.jpeg" alt="Luca Bazzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div><h3>Luca Bazzi</h3><div class="team-role">Gründer / Partner</div><p class="team-bio">[Bio Luca]</p></div>
                         </div>
                     </div>
                 </section>
@@ -627,42 +486,18 @@
                         <div class="contact-grid">
                             <div class="contact-info">
                                 <h2 class="section-title">Kontakt</h2>
-                                <h3 class="contact-headline">Lassen Sie uns über die Zukunft Ihres Betriebs sprechen.
-                                </h3>
-                                <p class="contact-text">Wir suchen den Dialog auf Augenhöhe. Diskret, unverbindlich und
-                                    partnerschaftlich.</p>
-
+                                <h3 class="contact-headline">Lassen Sie uns über die Zukunft Ihres Betriebs sprechen.</h3>
+                                <p class="contact-text">Wir suchen den Dialog auf Augenhöhe. Diskret, unverbindlich und partnerschaftlich.</p>
                                 <div class="contact-details">
-                                    <div class="contact-item">
-                                        <span class="contact-label">Achim Eckert</span>
-                                        <a href="tel:+41762259498" class="contact-link">+41 76 225 94 98</a><br>
-                                        <a href="mailto:eachim@me.com" class="contact-link">eachim@me.com</a>
-                                    </div>
-                                    <div class="contact-item" style="margin-top: var(--spacing-sm);">
-                                        <span class="contact-label">Luca Bazzi</span>
-                                        <a href="tel:+41795765516" class="contact-link">+41 79 576 55 16</a><br>
-                                        <a href="mailto:Luca.bazzi@beventures.ch"
-                                            class="contact-link">Luca.bazzi@beventures.ch</a>
-                                    </div>
+                                    <div class="contact-item"><span class="contact-label">Achim Eckert</span><a href="tel:+41762259498" class="contact-link">+41 76 225 94 98</a><br><a href="mailto:eachim@me.com" class="contact-link">eachim@me.com</a></div>
+                                    <div class="contact-item" style="margin-top: var(--spacing-sm);"><span class="contact-label">Luca Bazzi</span><a href="tel:+41795765516" class="contact-link">+41 79 576 55 16</a><br><a href="mailto:Luca.bazzi@beventures.ch" class="contact-link">Luca.bazzi@beventures.ch</a></div>
                                 </div>
                             </div>
                             <div class="contact-form-container">
-                                <form class="contact-form" action="#" method="POST"
-                                    onsubmit="event.preventDefault(); alert('Vielen Dank für Ihre Nachricht. Wir werden uns in Kürze bei Ihnen melden.');">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" id="name" name="name" required placeholder="Ihr Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">E-Mail</label>
-                                        <input type="email" id="email" name="email" required
-                                            placeholder="ihre.email@beispiel.ch">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message">Nachricht</label>
-                                        <textarea id="message" name="message" rows="4" required
-                                            placeholder="Wie können wir Ihnen helfen?"></textarea>
-                                    </div>
+                                <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Nachricht gesendet.');">
+                                    <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required placeholder="Ihr Name"></div>
+                                    <div class="form-group"><label for="email">E-Mail</label><input type="email" id="email" name="email" required placeholder="ihre.email@beispiel.ch"></div>
+                                    <div class="form-group"><label for="message">Nachricht</label><textarea id="message" name="message" rows="4" required placeholder="Wie können wir Ihnen helfen?"></textarea></div>
                                     <button type="submit" class="btn-primary">Nachricht senden</button>
                                 </form>
                             </div>
@@ -673,32 +508,18 @@
 
             <footer class="footer">
                 <div class="footer-container">
-                    <div class="footer-brand">
-                        <h2>ECHTWERK.</h2>
-                        <p>Zukunftsfähiges Handwerk</p>
-                    </div>
-                    <div class="footer-links">
-                        <a href="impressum.html">Impressum</a>
-                        <a href="datenschutz.html">Datenschutz</a>
-                        <a href="#contact">Kontakt</a>
-                    </div>
+                    <div class="footer-brand"><h2>ECHTWERK.</h2><p>Zukunftsfähiges Handwerk</p></div>
+                    <div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="#contact">Kontakt</a></div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2026 ECHTWERK – eine Marke der Bazzi & Eckert Ventures GmbH. Alle Rechte vorbehalten.</p>
-                </div>
+                <div class="footer-bottom"><p>&copy; 2026 ECHTWERK. Alle Rechte vorbehalten.</p></div>
             </footer>
         </div>
     </div>
 
     <div id="cookie-banner" class="cookie-banner">
         <div class="cookie-container">
-            <div class="cookie-text">
-                <p>Wir verwenden Cookies, um unsere Website und Ihren Besuch zu optimieren. Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-            </div>
-            <div class="cookie-buttons">
-                <button id="cookie-decline" class="btn-secondary">Nur essenzielle</button>
-                <button id="cookie-accept" class="btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">Akzeptieren</button>
-            </div>
+            <div class="cookie-text"><p>Wir verwenden Cookies... <a href="datenschutz.html">Datenschutzerklärung</a>.</p></div>
+            <div class="cookie-buttons"><button id="cookie-decline" class="btn-secondary">Nur essenzielle</button><button id="cookie-accept" class="btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">Akzeptieren</button></div>
         </div>
     </div>
 
@@ -706,68 +527,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Logik für Scroll-Spy ---
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.desktop-nav-links .nav-item');
-
-            const observerOptions = {
-                root: null,
-                // Trigger-Linie: Wenn die Sektion ins obere Drittel des Bildschirms kommt
-                rootMargin: '-20% 0px -60% 0px', 
-                threshold: 0
-            };
-
+            const observerOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const currentId = entry.target.getAttribute('id');
-                        
                         navLinks.forEach(link => {
                             link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${currentId}`) {
-                                link.classList.add('active');
-                            }
+                            if (link.getAttribute('href') === `#${currentId}`) link.classList.add('active');
                         });
                     }
                 });
             }, observerOptions);
+            sections.forEach(section => { if (section.getAttribute('id')) observer.observe(section); });
 
-            sections.forEach(section => {
-                if (section.getAttribute('id')) {
-                    observer.observe(section);
-                }
-            });
-
-            // --- NEU: Logik für den Cookie Banner ---
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptBtn = document.getElementById('cookie-accept');
             const declineBtn = document.getElementById('cookie-decline');
-
-            // Prüfen, ob der User bereits eine Auswahl getroffen hat
             if (!localStorage.getItem('echtwerk_cookie_consent')) {
-                // Kurze Verzögerung, damit es weicher eingeblendet wird
-                setTimeout(() => {
-                    cookieBanner.classList.add('show');
-                }, 1000);
+                setTimeout(() => { cookieBanner.classList.add('show'); }, 1000);
             }
-
-            // Funktion zum Schließen und Speichern der Auswahl
             const handleConsent = (consentType) => {
-                // Speichert die Auswahl ('all' oder 'essential') im Local Storage des Browsers
                 localStorage.setItem('echtwerk_cookie_consent', consentType);
-                
-                // Schließt den Banner
                 cookieBanner.classList.remove('show');
-                
-                /*
-                 Hier könntest du zukünftig Google Analytics oder Facebook Pixel feuern.
-                 Beispiel:
-                 if(consentType === 'all') {
-                     initGoogleAnalytics();
-                 }
-                */
             };
-
             if(acceptBtn) acceptBtn.addEventListener('click', () => handleConsent('all'));
             if(declineBtn) declineBtn.addEventListener('click', () => handleConsent('essential'));
         });
