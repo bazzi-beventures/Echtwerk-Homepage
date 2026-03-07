@@ -24,72 +24,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
-
-    <style>
-        /* Verhindert, dass die Sektion unter dem Header verschwindet */
-        section {
-            scroll-margin-top: 100px;
-        }
-
-        /* Desktop Navigation Styles */
-        .desktop-nav-links {
-            display: none; /* Mobile first: auf kleinen Screens ausblenden */
-            list-style: none;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-
-        /* Ab Tablet/Desktop einblenden */
-        @media (min-width: 992px) {
-            .desktop-nav-links {
-                display: flex;
-            }
-            /* Blendet deinen dynamischen Einzel-Titel auf Desktop aus, da wir jetzt alle Links zeigen */
-            .nav-title-wrapper {
-                display: none !important;
-            }
-        }
-
-        .desktop-nav-links a {
-            text-decoration: none;
-            color: #333; /* Standardfarbe */
-            font-family: 'Outfit', sans-serif;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .desktop-nav-links a:hover {
-            color: #3F6D50;
-        }
-
-        /* Aktiver State (Scroll-Spy) */
-        .desktop-nav-links a.active {
-            color: #3F6D50;
-            font-weight: 700;
-        }
-
-        .desktop-nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #3F6D50;
-            border-radius: 2px;
-        }
-    </style>
 </head>
 
 <body>
     <div id="scroll-progress-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: rgba(0,0,0,0.1); z-index: 99999;">
-    <div id="scroll-bar" style="height: 100%; width: 0%; background: #c8a355; box-shadow: 0 0 10px rgba(200, 163, 85, 0.8); transition: width 0.1s ease-out;"></div>
-</div>
+        <div id="scroll-bar" style="height: 100%; width: 0%; background: #c8a355; box-shadow: 0 0 10px rgba(200, 163, 85, 0.8); transition: width 0.1s ease-out;"></div>
+    </div>
     <div id="smooth-wrapper">
         <div id="smooth-content">
             <nav class="nav">
@@ -97,10 +37,10 @@
                     <a href="/" class="logo">
                         <img src="assets/logo.png" alt="ECHTWERK Logo" style="height: 80px; display: block;">
                     </a>
-                <div class="nav-title-wrapper" style="flex-grow: 1; overflow: hidden; margin-left: 2rem; display: flex; align-items: center;">
-                    <div id="section-title-display" style="font-family: 'Outfit', sans-serif; font-weight: 500; color: #3F6D50; font-size: 1.1rem; opacity: 0; white-space: nowrap;">
-                        Unsere Vision
-                    </div>
+                    <div class="nav-title-wrapper" style="flex-grow: 1; overflow: hidden; margin-left: 2rem; display: flex; align-items: center;">
+                        <div id="section-title-display" style="font-family: 'Outfit', sans-serif; font-weight: 500; color: #3F6D50; font-size: 1.1rem; opacity: 0; white-space: nowrap;">
+                            Unsere Vision
+                        </div>
                     </div>
 
                     <ul class="desktop-nav-links" style="flex-grow: 1; justify-content: flex-end; margin-right: 2rem;">
@@ -599,41 +539,6 @@
         </div>
     </div>
     <script src="js/main.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('main section');
-            const navLinks = document.querySelectorAll('.desktop-nav-links .nav-item');
-
-            const observerOptions = {
-                root: null,
-                // Trigger-Linie: Wenn die Sektion ins obere Drittel des Bildschirms kommt
-                rootMargin: '-20% 0px -60% 0px', 
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const currentId = entry.target.getAttribute('id');
-                        
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${currentId}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                if (section.getAttribute('id')) {
-                    observer.observe(section);
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
