@@ -1,8 +1,21 @@
-// GSAP and ScrollTrigger are loaded via CDN in index.html
-
-gsap.registerPlugin(ScrollTrigger);
+// 1. Plugins ganz oben registrieren
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    
+    // --- NEU: Progress Bar Initialisierung ---
+    // Erstellt die Animation für den Balken (id="scroll-bar")
+    gsap.to("#scroll-bar", {
+        width: "100%",
+        ease: "none",
+        scrollTrigger: {
+            trigger: "body",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.3 // Sorgt für flüssige Bewegung
+        }
+    });
+
     // --- Burger Menu Toggle ---
     const burgerMenu = document.getElementById('burger-menu');
     const navOverlay = document.getElementById('nav-overlay');
@@ -21,11 +34,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
             document.body.style.overflow = navOverlay.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Close button (X)
         const closeBtn = document.getElementById('nav-overlay-close');
         if (closeBtn) closeBtn.addEventListener('click', closeOverlayFn);
 
-        // Close menu when a link is clicked
         overlayLinks.forEach(link => {
             link.addEventListener('click', closeOverlayFn);
         });
@@ -34,14 +45,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // --- Hero Animation ---
     const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Abstract Gradient Fade In
     heroTl.to('.hero-gradient', {
         opacity: 0.8,
         duration: 2,
         ease: "power2.inOut"
     }, 0);
 
-    // Staggered Text Reveal
     heroTl.to('.hero-title .word', {
         y: 0,
         opacity: 1,
@@ -49,14 +58,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         stagger: 0.2
     }, 0.5);
 
-    // Subtitle fade up
     heroTl.to('.hero-subtitle', {
         y: 0,
         opacity: 1,
         duration: 1
     }, "-=0.6");
 
-    // CTA fade up
     heroTl.to('.hero-cta', {
         y: 0,
         opacity: 1,
@@ -119,7 +126,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             }
         });
 
-        // Alternate entry direction based on reverse class
         const xOffset = row.classList.contains('reverse') ? 50 : -50;
 
         rowTl.fromTo(content,
@@ -164,7 +170,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out" }
     );
 
-    // Reveal timeline items sequentially
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach((item, index) => {
         gsap.fromTo(item,
@@ -230,7 +235,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                // Adjust offset if nav is fixed
                 const navHeight = nav.offsetHeight;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
 
@@ -253,11 +257,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
     }
 
-    console.log("ECHTWERK initialized.");
-
     // --- Brush Drawing Animation ---
-    gsap.registerPlugin(MotionPathPlugin);
-
     const brushDividers = document.querySelectorAll('.brush-divider');
     brushDividers.forEach((divider) => {
         const path = divider.querySelector('.brush-path');
@@ -265,7 +265,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         if (!path || !tip) return;
 
-        // Set initial state
         gsap.set(tip, { visibility: 'visible', opacity: 0 });
 
         const drawTl = gsap.timeline({
@@ -276,7 +275,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             }
         });
 
-        // Calculate path length
         const length = path.getTotalLength();
         gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
 
@@ -291,11 +289,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     path: path,
                     align: path,
                     autoRotate: 90,
-                    alignOrigin: [0.5, 0] // Bristles touch the path
+                    alignOrigin: [0.5, 0]
                 },
                 duration: 1.5,
                 ease: "power1.inOut"
             }, "<")
             .to(tip, { opacity: 0, duration: 0.3 });
     });
+
+    console.log("ECHTWERK initialized with Scroll Progress.");
 });
