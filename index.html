@@ -7,13 +7,11 @@
     <title>ECHTWERK - Zukunftsfähiges Handwerk</title>
     <meta name="description"
         content="Wir verbinden traditionelles Handwerk mit digitalen Prozessen und einer modernen Arbeitskultur.">
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/hero.css">
     <link rel="stylesheet" href="css/vision.css">
@@ -23,10 +21,69 @@
     <link rel="stylesheet" href="css/team.css">
     <link rel="stylesheet" href="css/dividers.css">
     <link rel="stylesheet" href="css/contact.css">
-    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+
+    <style>
+        /* Verhindert, dass die Sektion unter dem Header verschwindet */
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Desktop Navigation Styles */
+        .desktop-nav-links {
+            display: none; /* Mobile first: auf kleinen Screens ausblenden */
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        /* Ab Tablet/Desktop einblenden */
+        @media (min-width: 992px) {
+            .desktop-nav-links {
+                display: flex;
+            }
+            /* Blendet deinen dynamischen Einzel-Titel auf Desktop aus, da wir jetzt alle Links zeigen */
+            .nav-title-wrapper {
+                display: none !important;
+            }
+        }
+
+        .desktop-nav-links a {
+            text-decoration: none;
+            color: #333; /* Standardfarbe */
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .desktop-nav-links a:hover {
+            color: #3F6D50;
+        }
+
+        /* Aktiver State (Scroll-Spy) */
+        .desktop-nav-links a.active {
+            color: #3F6D50;
+            font-weight: 700;
+        }
+
+        .desktop-nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #3F6D50;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,7 +92,6 @@
 </div>
     <div id="smooth-wrapper">
         <div id="smooth-content">
-            <!-- Nav -->
             <nav class="nav">
                 <div class="nav-container">
                     <a href="/" class="logo">
@@ -46,6 +102,16 @@
                         Unsere Vision
                     </div>
                     </div>
+
+                    <ul class="desktop-nav-links" style="flex-grow: 1; justify-content: flex-end; margin-right: 2rem;">
+                        <li><a href="#vision" class="nav-item">Vision</a></li>
+                        <li><a href="#problems" class="nav-item">Herausforderungen</a></li>
+                        <li><a href="#solutions" class="nav-item">Lösung</a></li>
+                        <li><a href="#roadmap" class="nav-item">Strategie</a></li>
+                        <li><a href="#team" class="nav-item">Team</a></li>
+                        <li><a href="#contact" class="nav-item">Kontakt</a></li>
+                    </ul>
+
                     <div class="burger-menu" id="burger-menu">
                         <div class="burger-line"></div>
                         <div class="burger-line"></div>
@@ -54,7 +120,6 @@
                 </div>
             </nav>
 
-            <!-- Full Screen Nav Overlay -->
             <div class="nav-overlay" id="nav-overlay">
                 <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Menü schliessen">&times;</button>
                 <div class="nav-overlay-content">
@@ -69,14 +134,11 @@
             </div>
 
             <main>
-                <!-- Hero Section -->
                 <section class="hero" id="hero">
                     <div class="hero-bg">
-                        <!-- Abstract overlay or cinematic gradient -->
                         <div class="hero-gradient"></div>
                     </div>
 
-                    <!-- Brush Strokes -->
                     <div class="hero-brush-strokes">
                         <div class="brush-stroke brush-1"></div>
                         <div class="brush-stroke brush-2"></div>
@@ -105,7 +167,6 @@
                     </div>
                 </section>
 
-                <!-- Vision Section -->
                 <section class="vision section-padding" id="vision">
                     <div class="container vision-content">
                         <h2 class="section-title">Unsere Vision</h2>
@@ -127,7 +188,6 @@
                                     fill="none" stroke="#3F6D50" stroke-width="16" stroke-linecap="round"
                                     stroke-linejoin="round" filter="url(#brush-texture)" />
                                 <g class="brush-tip" style="visibility: hidden;">
-                                    <!-- Brush Icon (Primary Blue: #2D5784) -->
                                     <path d="M-2,-12 L2,-12 L3,-2 L-3,-2 Z" fill="#2D5784" />
                                     <path d="M-3,-2 L3,-2 L3,0 L-3,0 Z" fill="#2D5784" opacity="0.8" />
                                     <path d="M-4,0 L4,0 C5,6 2,10 0,10 C-2,10 -5,6 -4,0 Z" fill="#2D5784" />
@@ -137,7 +197,6 @@
                     </div>
                 </section>
 
-                <!-- Problems Section -->
                 <section class="problems section-padding" id="problems">
                     <div class="container">
                         <div class="section-header center">
@@ -207,7 +266,6 @@
                                     fill="none" stroke="#3F6D50" stroke-width="16" stroke-linecap="round"
                                     stroke-linejoin="round" filter="url(#brush-texture)" />
                                 <g class="brush-tip" style="visibility: hidden;">
-                                    <!-- Brush Icon (Primary Blue: #2D5784) -->
                                     <path d="M-2,-12 L2,-12 L3,-2 L-3,-2 Z" fill="#2D5784" />
                                     <path d="M-3,-2 L3,-2 L3,0 L-3,0 Z" fill="#2D5784" opacity="0.8" />
                                     <path d="M-4,0 L4,0 C5,6 2,10 0,10 C-2,10 -5,6 -4,0 Z" fill="#2D5784" />
@@ -217,7 +275,6 @@
                     </div>
                 </section>
 
-                <!-- The ECHTWERK Solution Section -->
                 <section class="solutions section-padding" id="solutions">
                     <div class="container">
                         <div class="solution-header center">
@@ -225,7 +282,6 @@
                             <h3 class="section-headline">So schaffen wir echten Mehrwert.</h3>
                         </div>
 
-                        <!-- Solution 1: Employees -->
                         <div class="solution-row">
                             <div class="solution-content">
                                 <h3>Fachkräfte gewinnen</h3>
@@ -241,7 +297,6 @@
                             </div>
                         </div>
 
-                        <!-- Solution 2: Partners -->
                         <div class="solution-row reverse">
                             <div class="solution-content">
                                 <h3>Tradition weiterführen</h3>
@@ -257,7 +312,6 @@
                             </div>
                         </div>
 
-                        <!-- Solution 3: Customers -->
                         <div class="solution-row">
                             <div class="solution-content">
                                 <h3>Fokus auf die Wertschöpfung</h3>
@@ -275,7 +329,6 @@
                     </div>
                 </section>
 
-                <!-- Target Partnership Profile Section -->
                 <section class="partnership section-padding" id="partnership">
                     <div class="container">
                         <div class="section-header center">
@@ -337,7 +390,6 @@
                     </div>
                 </section>
 
-                <!-- Roadmap & Growth Strategy Section -->
                 <section class="roadmap section-padding" id="roadmap">
                     <div class="container">
                         <div class="section-header center">
@@ -399,7 +451,6 @@
                     </div>
                 </section>
 
-                <!-- Team Section -->
                 <section class="team section-padding" id="team">
                     <div class="container">
                         <div class="section-header center">
@@ -408,9 +459,7 @@
                         </div>
 
                         <div class="team-grid">
-                            <!-- Team Member 1: Achim Eckert -->
                             <div class="team-member">
-                                <!-- Placeholder Image -->
                                 <div class="team-photo">[Foto Platzhalter]</div>
                                 <h3>Achim Eckert</h3>
                                 <div class="team-role">Gründer / Partner</div>
@@ -444,9 +493,7 @@
                                 </div>
                             </div>
 
-                            <!-- Team Member 2: Luca Bazzi -->
                             <div class="team-member">
-                                <!-- Placeholder Image -->
                                 <div class="team-photo">
                                 <img src="assets/Profilbild Luca.jpeg" alt="Luca Bazzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                                 </div>
@@ -485,7 +532,6 @@
                     </div>
                 </section>
 
-                <!-- Contact Section -->
                 <section class="contact section-padding" id="contact">
                     <div class="container">
                         <div class="contact-grid">
@@ -552,8 +598,42 @@
             </footer>
         </div>
     </div>
-    <!-- Scripts -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.desktop-nav-links .nav-item');
+
+            const observerOptions = {
+                root: null,
+                // Trigger-Linie: Wenn die Sektion ins obere Drittel des Bildschirms kommt
+                rootMargin: '-20% 0px -60% 0px', 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+                        
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${currentId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                if (section.getAttribute('id')) {
+                    observer.observe(section);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
