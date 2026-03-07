@@ -360,5 +360,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
             .to(tip, { opacity: 0, duration: 0.3 });
     });
 
-    console.log("ECHTWERK initialized with Scroll Progress and Desktop Nav Spy.");
+    // --- NEU: DSGVO / Cookie Banner Logik ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    if (cookieBanner) {
+        // Prüfen, ob der User bereits eine Auswahl getroffen hat
+        if (!localStorage.getItem('echtwerk_cookie_consent')) {
+            // Kurze Verzögerung, damit es weicher ins Bild fährt
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 1000);
+        }
+
+        // Funktion zum Schließen und Speichern der Auswahl
+        const handleConsent = (consentType) => {
+            // Speichert die Auswahl ('all' oder 'essential') im Local Storage
+            localStorage.setItem('echtwerk_cookie_consent', consentType);
+            
+            // Schließt den Banner
+            cookieBanner.classList.remove('show');
+            
+            // Hier könnten zukünftig Tracking-Skripte initialisiert werden
+            // if(consentType === 'all') { initAnalytics(); }
+        };
+
+        if(acceptBtn) acceptBtn.addEventListener('click', () => handleConsent('all'));
+        if(declineBtn) declineBtn.addEventListener('click', () => handleConsent('essential'));
+    }
+
+    console.log("ECHTWERK initialized with Scroll Progress, Desktop Nav Spy and Cookie Logic.");
 });
