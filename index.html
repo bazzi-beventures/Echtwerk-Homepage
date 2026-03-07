@@ -55,7 +55,7 @@
 
         /* Desktop Navigation Styles */
         .desktop-nav-links {
-            display: none;
+            display: none; /* Mobile first: auf kleinen Screens ausblenden */
             list-style: none;
             gap: 2rem;
             margin: 0;
@@ -74,7 +74,7 @@
 
         .desktop-nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #333; /* Standardfarbe */
             font-family: 'Outfit', sans-serif;
             font-weight: 500;
             font-size: 1rem;
@@ -105,7 +105,7 @@
 
         .cookie-banner {
             position: fixed;
-            bottom: -150%;
+            bottom: -150%; /* Versteckt den Banner initial */
             left: 0;
             width: 100%;
             background-color: #ffffff;
@@ -146,7 +146,7 @@
         }
 
         .cookie-text a {
-            color: #2D5784;
+            color: #2D5784; /* Primary Blue */
             text-decoration: underline;
             font-weight: 500;
             transition: opacity 0.3s ease;
@@ -495,57 +495,12 @@
                             <h2 class="section-title" style="color: #3F6D50;">Strategie</h2>
                             <h3 class="section-headline">Roadmap & Wachstum</h3>
                         </div>
-
                         <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 1: Scouting</h4>
-                                    <ul>
-                                        <li>Identifikation von etablierten Betrieben mit anstehendem Nachfolgebedarf.
-                                        </li>
-                                        <li>Fokus auf gesunde Unternehmensstrukturen und stabile Erträge.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 2: Übernahme</h4>
-                                    <ul>
-                                        <li>Akquisition oder Mehrheitsbeteiligung durch ECHTWERK.</li>
-                                        <li>Bisherige Eigentümer bleiben auf Wunsch in einer Übergangsphase aktiv
-                                            involviert.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 3: Integration</h4>
-                                    <ul>
-                                        <li>Zentralisierung von nicht-wertschöpfenden administrativen Tätigkeiten.</li>
-                                        <li>Einführung moderner Software-Tools und standardisierter Prozesse.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Schritt 4/5: Expansion</h4>
-                                    <ul>
-                                        <li>Gezielter regionaler Ausbau des ECHTWERK-Netzwerks.</li>
-                                        <li>Stärkung der Dachmarke für höchste Visibilität und Kundenvertrauen.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item highlight-goal">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Mittelfristiges Ziel (Ende 2027)</h4>
-                                    <p>Skaliertes und erweitertes Netzwerk über mehrere Regionen hinweg.</p>
-                                </div>
-                            </div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 1: Scouting</h4><ul><li>Identifikation von etablierten Betrieben mit anstehendem Nachfolgebedarf.</li><li>Fokus auf gesunde Unternehmensstrukturen und stabile Erträge.</li></ul></div></div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 2: Übernahme</h4><ul><li>Akquisition oder Mehrheitsbeteiligung durch ECHTWERK.</li><li>Bisherige Eigentümer bleiben auf Wunsch in einer Übergangsphase aktiv involviert.</li></ul></div></div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 3: Integration</h4><ul><li>Zentralisierung von nicht-wertschöpfenden administrativen Tätigkeiten.</li><li>Einführung moderner Software-Tools und standardisierter Prozesse.</li></ul></div></div>
+                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Schritt 4/5: Expansion</h4><ul><li>Gezielter regionaler Ausbau des ECHTWERK-Netzwerks.</li><li>Stärkung der Dachmarke für höchste Visibilität und Kundenvertrauen.</li></ul></div></div>
+                            <div class="timeline-item highlight-goal"><div class="timeline-dot"></div><div class="timeline-content"><h4>Mittelfristiges Ziel (Ende 2027)</h4><p>Skaliertes und erweitertes Netzwerk über mehrere Regionen hinweg.</p></div></div>
                         </div>
                     </div>
                 </section>
@@ -569,7 +524,7 @@
                                     <a href="https://www.linkedin.com/in/achim-eckert" class="social-link" title="LinkedIn" target="_blank">
                                         <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                                     </a>
-                                    <a href="mailto:eachim@me.com" class="social-link" title="Email">
+                                    <a href="mailto:achim.eckert@beventures.ch" class="social-link" title="Email">
                                         <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     </a>
                                     <a href="tel:+41762259498" class="social-link" title="Phone">
@@ -611,7 +566,7 @@
                                     <div class="contact-item">
                                         <span class="contact-label">Achim Eckert</span>
                                         <a href="tel:+41762259498" class="contact-link">+41 76 225 94 98</a><br>
-                                        <a href="mailto:eachim@me.com" class="contact-link">eachim@me.com</a>
+                                        <a href="mailto:achim.eckert@beventures.ch" class="contact-link">achim.eckert@beventures.ch</a>
                                     </div>
                                     <div class="contact-item" style="margin-top: 1rem;">
                                         <span class="contact-label">Luca Bazzi</span>
