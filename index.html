@@ -26,22 +26,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
 
     <style>
-        /* Verhindert, dass die Sektion unter dem Header verschwindet */
-        section {
-            scroll-margin-top: 100px;
+        /* FIX: Verhindert das seitliche Wackeln auf Mobile */
+        html, body {
+            overflow-x: hidden !important;
+            width: 100%;
+            position: relative;
+        }
+        
+        #smooth-wrapper {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
-        /* --- FIX: Scharfe, realistische Pinselstriche (KEIN BLUR) --- */
+        /* FIX: Scharfe, realistische Pinselstriche (Entfernt Blur) */
         .brush-stroke, .brush-path {
             filter: url(#realistic-brush) !important;
             -webkit-filter: url(#realistic-brush) !important;
-            /* Verhindert, dass der Browser beim Animieren die Kanten weichzeichnet */
             transform-style: preserve-3d;
             backface-visibility: hidden;
             will-change: transform;
         }
 
-        /* Desktop Navigation Styles */
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Desktop Navigation */
         .desktop-nav-links {
             display: none;
             list-style: none;
@@ -91,6 +102,7 @@
             border-radius: 2px;
         }
 
+        /* Cookie Banner */
         .cookie-banner {
             position: fixed;
             bottom: -150%;
@@ -140,10 +152,6 @@
             transition: opacity 0.3s ease;
         }
 
-        .cookie-text a:hover {
-            opacity: 0.8;
-        }
-
         .cookie-buttons {
             display: flex;
             gap: 1rem;
@@ -177,10 +185,7 @@
             <filter id="realistic-brush" x="-20%" y="-20%" width="140%" height="140%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.04 0.4" numOctaves="3" seed="5" result="noise" />
                 <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" xChannelSelector="R" yChannelSelector="G" result="displaced" />
-                <feColorMatrix type="matrix" values="1 0 0 0 0  
-                                                   0 1 0 0 0  
-                                                   0 0 1 0 0  
-                                                   0 0 0 35 -15" />
+                <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" />
             </filter>
         </defs>
     </svg>
@@ -188,6 +193,7 @@
     <div id="scroll-progress-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: rgba(0,0,0,0.1); z-index: 99999;">
         <div id="scroll-bar" style="height: 100%; width: 0%; background: #c8a355; box-shadow: 0 0 10px rgba(200, 163, 85, 0.8); transition: width 0.1s ease-out;"></div>
     </div>
+
     <div id="smooth-wrapper">
         <div id="smooth-content">
             <nav class="nav">
@@ -226,8 +232,7 @@
                     <a href="#solutions" class="overlay-link">Unsere Lösung</a>
                     <a href="#roadmap" class="overlay-link">Strategie</a>
                     <a href="#team" class="overlay-link">Wer wir sind</a>
-                    <a href="#contact" class="overlay-link btn-primary"
-                        style="margin-top: 2rem; display: inline-block;">Kontakt</a>
+                    <a href="#contact" class="overlay-link btn-primary" style="margin-top: 2rem; display: inline-block;">Kontakt</a>
                 </div>
             </div>
 
@@ -236,7 +241,6 @@
                     <div class="hero-bg">
                         <div class="hero-gradient"></div>
                     </div>
-
                     <div class="hero-brush-strokes">
                         <div class="brush-stroke brush-1"></div>
                         <div class="brush-stroke brush-2"></div>
@@ -246,18 +250,11 @@
                     <div class="container hero-content">
                         <div class="hero-text">
                             <h1 class="hero-title">
-                                <span class="line">
-                                    <span class="word">FARBE</span>
-                                </span>
-                                <span class="line">
-                                    <span class="word">AUSBAU</span>
-                                </span>
-                                <span class="line">
-                                    <span class="word accent">PFLEGE.</span>
-                                </span>
+                                <span class="line"><span class="word">FARBE</span></span>
+                                <span class="line"><span class="word">AUSBAU</span></span>
+                                <span class="line"><span class="word accent">PFLEGE.</span></span>
                             </h1>
-                            <p class="hero-subtitle">Ein moderner, unternehmerischer Ansatz für nachhaltiges Handwerk.
-                            </p>
+                            <p class="hero-subtitle">Ein moderner, unternehmerischer Ansatz für nachhaltiges Handwerk.</p>
                             <div class="hero-cta">
                                 <a href="#problems" class="btn-primary">Mehr erfahren</a>
                             </div>
@@ -269,9 +266,7 @@
                     <div class="container vision-content">
                         <h2 class="section-title">Unsere Vision</h2>
                         <h3 class="vision-statement">Wir machen das Handwerk wieder attraktiv.</h3>
-                        <p class="vision-text">Durch moderne Arbeitskultur und smarte digitale Tools entlasten wir
-                            unsere Teams von Administration, damit der Fokus wieder dort liegt, wo er hingehört: auf dem
-                            echten Handwerk.</p>
+                        <p class="vision-text">Durch moderne Arbeitskultur und smarte digitale Tools entlasten wir unsere Teams von Administration, damit der Fokus wieder dort liegt, wo er hingehört: auf dem echten Handwerk.</p>
                         <div class="brush-divider">
                             <svg class="brush-drawing-svg" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
                                 <path class="brush-path" d="M35,22 C65,30 85,62 100,62 C115,62 135,30 165,22"
@@ -293,58 +288,31 @@
                             <h2 class="section-title" style="color: #3F6D50;">Herausforderungen</h2>
                             <h3 class="section-headline">Das Handwerk im Wandel</h3>
                         </div>
-
                         <div class="problems-grid">
                             <div class="problem-card">
                                 <div class="problem-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                        <path d="m14 14 6 6M20 14l-6 6" />
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="m14 14 6 6M20 14l-6 6" /></svg>
                                 </div>
                                 <h4>Nachfolge-Problematik</h4>
                                 <p>Viele etablierte, lokale Betriebe finden keine geeigneten Nachfolger.</p>
                             </div>
                             <div class="problem-card">
                                 <div class="problem-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                                        <path d="M12 2v3"></path>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path><path d="M12 2v3"></path></svg>
                                 </div>
                                 <h4>Fachkräftemangel</h4>
-                                <p>Akuter Mangel an qualifizierten Fachkräften und ein oft wenig attraktives
-                                    Arbeitgeber-Image im Handwerk.</p>
+                                <p>Akuter Mangel an qualifizierten Fachkräften und ein oft wenig attraktives Arbeitgeber-Image im Handwerk.</p>
                             </div>
                             <div class="problem-card">
                                 <div class="problem-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path>
-                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                        <path d="m3 15 2 2 4-4"></path>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m3 15 2 2 4-4"></path></svg>
                                 </div>
                                 <h4>Digitalisierungs-Defizit</h4>
-                                <p>Niedriger Digitalisierungsgrad und hohe administrative Belastung traditioneller
-                                    Betriebe.</p>
+                                <p>Niedriger Digitalisierungsgrad und hohe administrative Belastung traditioneller Betriebe.</p>
                             </div>
                             <div class="problem-card">
                                 <div class="problem-icon">
-                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor"
-                                        stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect width="7" height="7" x="3" y="3" rx="1"></rect>
-                                        <rect width="7" height="7" x="14" y="3" rx="1"></rect>
-                                        <rect width="7" height="7" x="14" y="14" rx="1"></rect>
-                                        <rect width="7" height="7" x="3" y="14" rx="1"></rect>
-                                        <path d="M10 17h4M10 6.5h4M6.5 10v4M17 10v4"></path>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect><path d="M10 17h4M10 6.5h4M6.5 10v4M17 10v4"></path></svg>
                                 </div>
                                 <h4>Fragmentierter Markt</h4>
                                 <p>Stark fragmentierte Branche mit begrenztem individuellem Wachstumspotenzial.</p>
@@ -396,7 +364,7 @@
                                 </ul>
                             </div>
                             <div class="solution-image">
-                                <img src="assets/craft_owner_painter.png" alt="Betriebsinhaber" class="rounded-image">
+                                <img src="assets/old_master_painter.png" alt="Erfahrener Malerchef in seinem Betrieb" class="rounded-image">
                             </div>
                         </div>
                         <div class="solution-row">
@@ -475,8 +443,18 @@
                     <div class="container">
                         <div class="section-header center"><h2 class="section-title">Wer wir sind</h2><h3 class="section-headline">Die Köpfe hinter ECHTWERK</h3></div>
                         <div class="team-grid">
-                            <div class="team-member"><div class="team-photo">[Foto Achim]</div><h3>Achim Eckert</h3><div class="team-role">Gründer / Partner</div><p class="team-bio">[Bio Achim]</p></div>
-                            <div class="team-member"><div class="team-photo"><img src="assets/Profilbild Luca.jpeg" alt="Luca Bazzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div><h3>Luca Bazzi</h3><div class="team-role">Gründer / Partner</div><p class="team-bio">[Bio Luca]</p></div>
+                            <div class="team-member">
+                                <div class="team-photo">[Foto Achim]</div>
+                                <h3>Achim Eckert</h3>
+                                <div class="team-role">Gründer / Partner</div>
+                                <p class="team-bio">[Bio Achim]</p>
+                            </div>
+                            <div class="team-member">
+                                <div class="team-photo"><img src="assets/Profilbild Luca.jpeg" alt="Luca Bazzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
+                                <h3>Luca Bazzi</h3>
+                                <div class="team-role">Gründer / Partner</div>
+                                <p class="team-bio">[Bio Luca]</p>
+                            </div>
                         </div>
                     </div>
                 </section>
