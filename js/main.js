@@ -15,41 +15,70 @@ document.addEventListener("DOMContentLoaded", (event) => {
             scrub: 0.3 // Sorgt für flüssige Bewegung
         }
     });
-// --- Titel-Scroller Logik ---
-const sections = [
-    { id: "#vision", title: "Unsere Vision" },
-    { id: "#problems", title: "Herausforderungen" },
-    { id: "#solutions", title: "Unsere Lösung" },
-    { id: "#roadmap", title: "Strategie" },
-    { id: "#team", title: "Wer wir sind" },
-    { id: "#contact", title: "Kontakt" }
-];
 
-const titleDisplay = document.getElementById("section-title-display");
+    // --- Titel-Scroller & Desktop-Navigation (Scroll-Spy) Logik ---
+    const sections = [
+        { id: "#vision", title: "Unsere Vision" },
+        { id: "#problems", title: "Herausforderungen" },
+        { id: "#solutions", title: "Unsere Lösung" },
+        { id: "#roadmap", title: "Strategie" },
+        { id: "#team", title: "Wer wir sind" },
+        { id: "#contact", title: "Kontakt" }
+    ];
 
-sections.forEach((section) => {
-    ScrollTrigger.create({
-        trigger: section.id,
-        start: "top 100px", // Aktiviert sich, wenn die Sektion den Header erreicht
-        end: "bottom 100px",
-        onEnter: () => updateTitle(section.title),
-        onEnterBack: () => updateTitle(section.title),
-        onLeave: () => { if(section.id === "#contact") gsap.to(titleDisplay, {opacity: 0}) },
-        onLeaveBack: () => { if(section.id === "#vision") gsap.to(titleDisplay, {opacity: 0}) }
+    const titleDisplay = document.getElementById("section-title-display");
+    const desktopNavLinks = document.querySelectorAll(".desktop-nav-links .nav-item"); // Hinzugefügt für Desktop Nav
+
+    // Hilfsfunktion: Setzt die Active-Klasse im Desktop-Menü
+    function updateDesktopNavActiveState(activeId) {
+        desktopNavLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === activeId) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    sections.forEach((section) => {
+        ScrollTrigger.create({
+            trigger: section.id,
+            start: "top 100px", // Aktiviert sich, wenn die Sektion den Header erreicht
+            end: "bottom 100px",
+            onEnter: () => {
+                updateTitle(section.title);
+                updateDesktopNavActiveState(section.id);
+            },
+            onEnterBack: () => {
+                updateTitle(section.title);
+                updateDesktopNavActiveState(section.id);
+            },
+            onLeave: () => { 
+                if(section.id === "#contact") {
+                    gsap.to(titleDisplay, {opacity: 0});
+                    updateDesktopNavActiveState(""); // Reset Nav
+                } 
+            },
+            onLeaveBack: () => { 
+                if(section.id === "#vision") {
+                    gsap.to(titleDisplay, {opacity: 0});
+                    updateDesktopNavActiveState(""); // Reset Nav
+                } 
+            }
+        });
     });
-});
 
-function updateTitle(newTitle) {
-    gsap.to(titleDisplay, {
-        y: -20,
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => {
-            titleDisplay.innerText = newTitle;
-            gsap.fromTo(titleDisplay, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 });
-        }
-    });
-}
+    function updateTitle(newTitle) {
+        gsap.to(titleDisplay, {
+            y: -20,
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+                titleDisplay.innerText = newTitle;
+                gsap.fromTo(titleDisplay, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 });
+            }
+        });
+    }
+
     // --- Burger Menu Toggle ---
     const burgerMenu = document.getElementById('burger-menu');
     const navOverlay = document.getElementById('nav-overlay');
@@ -331,5 +360,5 @@ function updateTitle(newTitle) {
             .to(tip, { opacity: 0, duration: 0.3 });
     });
 
-    console.log("ECHTWERK initialized with Scroll Progress.");
+    console.log("ECHTWERK initialized with Scroll Progress and Desktop Nav Spy.");
 });
