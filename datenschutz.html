@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutz | ECHTWERK</title>
+    <meta name="description" content="Datenschutzerklärung der ECHTWERK - Bazzi & Eckert Ventures GmbH.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+
+    <style>
+        /* Spezifisches Styling für die Textseiten (Impressum/Datenschutz) */
+        .legal-content {
+            color: var(--color-text-dark);
+        }
+        .legal-content h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            color: var(--color-primary-green);
+        }
+        .legal-content h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            color: var(--color-primary-blue);
+        }
+        .legal-content p, .legal-content li {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            color: var(--color-text-dark);
+        }
+        .legal-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .legal-content a {
+            color: var(--color-primary-blue);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scroll-progress-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: rgba(0,0,0,0.1); z-index: 99999;">
+        <div id="scroll-bar" style="height: 100%; width: 0%; background: #c8a355; box-shadow: 0 0 10px rgba(200, 163, 85, 0.8); transition: width 0.1s ease-out;"></div>
+    </div>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <nav class="nav">
+                <div class="nav-container">
+                    <a href="index.html" class="logo">
+                        <img src="assets/logo.png" alt="ECHTWERK Logo" style="height: 80px; display: block;">
+                    </a>
+                    
+                    <div class="nav-title-wrapper" style="flex-grow: 1; overflow: hidden; margin-left: 2rem; display: flex; align-items: center;">
+                        <div id="section-title-display" style="font-family: 'Outfit', sans-serif; font-weight: 500; color: #3F6D50; font-size: 1.1rem; opacity: 0; white-space: nowrap;">
+                            Datenschutz
+                        </div>
+                    </div>
+
+                    <ul class="desktop-nav-links" style="flex-grow: 1; justify-content: flex-end; margin-right: 2rem;">
+                        <li><a href="index.html#vision" class="nav-item">Vision</a></li>
+                        <li><a href="index.html#problems" class="nav-item">Herausforderungen</a></li>
+                        <li><a href="index.html#solutions" class="nav-item">Lösung</a></li>
+                        <li><a href="index.html#roadmap" class="nav-item">Strategie</a></li>
+                        <li><a href="index.html#team" class="nav-item">Team</a></li>
+                        <li><a href="index.html#contact" class="nav-item">Kontakt</a></li>
+                    </ul>
+
+                    <div class="burger-menu" id="burger-menu">
+                        <div class="burger-line"></div>
+                        <div class="burger-line"></div>
+                        <div class="burger-line"></div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="nav-overlay" id="nav-overlay">
+                <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Menü schliessen">&times;</button>
+                <div class="nav-overlay-content">
+                    <a href="index.html#vision" class="overlay-link">Unsere Vision</a>
+                    <a href="index.html#problems" class="overlay-link">Herausforderungen</a>
+                    <a href="index.html#solutions" class="overlay-link">Unsere Lösung</a>
+                    <a href="index.html#roadmap" class="overlay-link">Strategie</a>
+                    <a href="index.html#team" class="overlay-link">Wer wir sind</a>
+                    <a href="index.html#contact" class="overlay-link btn-primary" style="margin-top: 2rem; display: inline-block;">Kontakt</a>
+                </div>
+            </div>
+
+            <main>
+                <section class="section-padding" style="padding-top: 180px; min-height: 80vh; background-color: var(--color-background-light);">
+                    <div class="container legal-content" style="max-width: 900px; margin: 0 auto;">
+                        
+                        <h1 style="color: var(--color-primary-blue); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem;">Datenschutzerklärung</h1>
+                        
+                        <p>Zuletzt aktualisiert am: 7. März 2026</p>
+
+                        <h2>1. Einleitung</h2>
+                        <p>Wir, die Bazzi & Eckert Ventures GmbH (nachfolgend "ECHTWERK", "wir" oder "uns"), nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (insbesondere des Schweizer Datenschutzgesetzes, DSG, sowie der EU-DSGVO, sofern anwendbar) sowie dieser Datenschutzerklärung.</p>
+
+                        <h2>2. Verantwortliche Stelle</h2>
+                        <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+                        <p>
+                            <strong>Bazzi & Eckert Ventures GmbH</strong><br>
+                            c/o Luca Bazzi<br>
+                            Weidstrasse 31<br>
+                            8472 Seuzach<br>
+                            Schweiz<br><br>
+                            E-Mail: <a href="mailto:info@beventures.ch">info@beventures.ch</a>
+                        </p>
+
+                        <h2>3. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck und deren Verwendung</h2>
+                        <h3>a) Beim Besuch der Website</h3>
+                        <p>Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet. Diese Informationen werden temporär in einem sogenannten Logfile gespeichert. Folgende Informationen werden dabei ohne Ihr Zutun erfasst und bis zur automatisierten Löschung gespeichert:</p>
+                        <ul>
+                            <li>IP-Adresse des anfragenden Rechners,</li>
+                            <li>Datum und Uhrzeit des Zugriffs,</li>
+                            <li>Name und URL der abgerufenen Datei,</li>
+                            <li>Website, von der aus der Zugriff erfolgt (Referrer-URL),</li>
+                            <li>verwendeter Browser und ggf. das Betriebssystem Ihres Rechners.</li>
+                        </ul>
+                        <p>Die genannten Daten werden durch uns zu folgenden Zwecken verarbeitet: Gewährleistung eines reibungslosen Verbindungsaufbaus der Website, Gewährleistung einer komfortablen Nutzung unserer Website, Auswertung der Systemsicherheit und -stabilität.</p>
+
+                        <h3>b) Bei Nutzung unseres Kontaktformulars</h3>
+                        <p>Bei Fragen jeglicher Art bieten wir Ihnen die Möglichkeit, mit uns über ein auf der Website bereitgestelltes Formular Kontakt aufzunehmen. Dabei ist die Angabe einer gültigen E-Mail-Adresse sowie Ihres Namens erforderlich, damit wir wissen, von wem die Anfrage stammt und um diese beantworten zu können. Weitere Angaben können freiwillig getätigt werden.</p>
+
+                        <h2>4. Weitergabe von Daten</h2>
+                        <p>Eine Übermittlung Ihrer persönlichen Daten an Dritte zu anderen als den im Folgenden aufgeführten Zwecken findet nicht statt. Wir geben Ihre persönlichen Daten nur an Dritte weiter, wenn:</p>
+                        <ul>
+                            <li>Sie Ihre ausdrückliche Einwilligung dazu erteilt haben,</li>
+                            <li>dies gesetzlich zulässig und für die Abwicklung von Vertragsverhältnissen mit Ihnen erforderlich ist,</li>
+                            <li>für die Weitergabe eine gesetzliche Verpflichtung besteht.</li>
+                        </ul>
+
+                        <h2>5. Cookies</h2>
+                        <p>Wir setzen auf unserer Seite Cookies ein. Hierbei handelt es sich um kleine Dateien, die Ihr Browser automatisch erstellt und die auf Ihrem Endgerät gespeichert werden, wenn Sie unsere Seite besuchen. In dem Cookie werden Informationen abgelegt, die sich jeweils im Zusammenhang mit dem spezifisch eingesetzten Endgerät ergeben. Dies bedeutet jedoch nicht, dass wir dadurch unmittelbar Kenntnis von Ihrer Identität erhalten.</p>
+                        <p>Die Nutzung essenzieller Cookies dient dazu, die Nutzung unseres Angebots für Sie angenehmer zu gestalten (z.B. Speicherung Ihrer Entscheidung im Cookie-Banner). Darüber hinaus setzen wir, sofern Sie eingewilligt haben, auch Cookies zu statistischen und analytischen Zwecken ein.</p>
+
+                        <h2>6. Ihre Rechte</h2>
+                        <p>Sie haben das Recht:</p>
+                        <ul>
+                            <li>Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen.</li>
+                            <li>unverzüglich die Berichtigung unrichtiger oder Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
+                            <li>die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
+                            <li>Ihre einmal erteilte Einwilligung jederzeit gegenüber uns zu widerrufen.</li>
+                        </ul>
+
+                        <h2>7. Datensicherheit</h2>
+                        <p>Wir bedienen uns geeigneter technischer und organisatorischer Sicherheitsmassnahmen, um Ihre Daten gegen zufällige oder vorsätzliche Manipulationen, teilweisen oder vollständigen Verlust, Zerstörung oder gegen den unbefugten Zugriff Dritter zu schützen.</p>
+                        
+                    </div>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <div class="footer-container">
+                    <div class="footer-brand">
+                        <h2>ECHTWERK.</h2>
+                        <p>Zukunftsfähiges Handwerk</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="impressum.html">Impressum</a>
+                        <a href="datenschutz.html">Datenschutz</a>
+                        <a href="index.html#contact">Kontakt</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 ECHTWERK – eine Marke der Bazzi & Eckert Ventures GmbH. Alle Rechte vorbehalten.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleDisplay = document.getElementById("section-title-display");
+            if(titleDisplay) {
+                titleDisplay.innerText = "Datenschutz";
+                titleDisplay.style.opacity = 1;
+            }
+        });
+    </script>
+</body>
+</html>
